@@ -71,6 +71,15 @@ app.use('/uploads', express.static('uploads'));
 //=================================
 
 
+// Health Check Endpoint (for cron jobs / uptime monitoring)
+app.get(['/health', '/ping'], (req, res) => {
+    res.status(200).json({
+        status: 'OK',
+        message: 'VIBE server is active and healthy',
+        timestamp: new Date().toISOString()
+    });
+});
+
 app.use(`/`, googleAuthRouter);
 app.use(`/`, userRoutes);
 app.use(`/admin`, adminRoutes);
