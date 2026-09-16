@@ -1,131 +1,173 @@
+<!-- Include Header Partial -->
+<%- include("partials/header") %>
 
-    <!-- Include the header partial -->
+<!-- Main Sign In Container -->
+<div class="min-h-[calc(100vh-140px)] flex items-center justify-center py-12 px-4 sm:px-6 bg-[#F8FAFC] relative overflow-hidden">
+    
+    <!-- Subtle Ambient Glow -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-slate-200/50 rounded-full blur-3xl pointer-events-none -z-10"></div>
 
-    <%- include("partials/header") %>
+    <!-- Sign In Card -->
+    <div class="bg-white p-7 sm:p-10 rounded-3xl sm:rounded-[2rem] border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.04)] w-full max-w-[420px] transition-all duration-300">
+        
+        <!-- Header Icon & Title -->
+        <div class="text-center mb-8">
+            <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-800 mx-auto mb-4 shadow-sm">
+                <i class="fa-solid fa-lock text-base"></i>
+            </div>
+            <h1 class="text-2xl sm:text-[26px] font-extrabold text-slate-900 tracking-tight">Welcome Back</h1>
+            <p class="text-xs text-slate-500 mt-1.5">Sign in to access your VIBE audio experience</p>
+        </div>
 
-        <!-- Sign In Form -->
-        <div class="flex justify-center items-center my-8 sm:mt-24 mb-24 px-4 sm:px-0">
-            <div class="bg-white p-4 sm:p-8 rounded-lg shadow-md w-full max-w-md">
-                <h2 class="text-2xl font-bold mb-6 text-center">Sign In</h2>
-                <form id="loginForm">
-                    <div class="mb-4">
-                        <input type="email" id="email" name="email" placeholder="Email"
-                            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                            required>
-                    </div>
-
-                    <!-- Password field with toggle  -->
-                    <div class="mb-4 relative">
-                        <input type="password" id="password" name="password" placeholder="Password"
-                            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                            required>
-
-                        <!-- Eye icon to toggle visibility  -->
-                        <i id="togglePassword" class="fas fa-eye absolute right-3 top-3 cursor-pointer"></i>
-                    </div>
-                    <div class="text-right mb-4">
-                        <a href="/forgot-password" class="text-teal-400 ">Forgot Password?</a>
-                    </div>
-                    <button type="submit"
-                        class="w-full bg-black text-white p-3 rounded-lg font-semibold hover:bg-gray-800">
-                        Sign In</button>
-                    <div class="my-4 text-center text-red-500" id="errorAlert">
-                        <!-- This will be updated dynamically  -->
-
-                        <% if (blockedMessage) { %> 
-                             <%= blockedMessage %> 
-                        <% } %> 
-                    </div>
-                    <div class="my-4 text-center text-green-500" id="successAlert">
-                        <!-- Success message from server side  -->
-                    </div>
-                </form>
-                <div class="text-center my-4">
-                    <p>Sign in with</p>
-                    <a href="/auth/google">
-                        <button class="mt-2">
-                            <img src="../images/google-icon.png" alt="Google Sign In" class="w-8 h-8 mx-auto">
-                        </button>
-                    </a>
+        <!-- Login Form -->
+        <form id="loginForm" class="space-y-4">
+            
+            <!-- Email Field -->
+            <div>
+                <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">Email Address</label>
+                <div class="relative">
+                    <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="email" id="email" name="email" placeholder="name@example.com"
+                        class="w-full bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-slate-400 focus:ring-4 focus:ring-slate-900/5 rounded-2xl pl-10 pr-4 py-3 text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
+                        required>
                 </div>
-                <p class="text-center mt-4">Don't have an account? <a href="/signup"
-                        class="text-teal-400">Sign Up</a></p>
+            </div>
+
+            <!-- Password Field with Visibility Toggle -->
+            <div>
+                <div class="flex items-center justify-between mb-1.5">
+                    <label for="password" class="block text-xs font-bold uppercase tracking-wider text-slate-700">Password</label>
+                    <a href="/forgot-password" class="text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors">Forgot?</a>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-key absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="password" id="password" name="password" placeholder="••••••••"
+                        class="w-full bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-slate-400 focus:ring-4 focus:ring-slate-900/5 rounded-2xl pl-10 pr-11 py-3 text-sm text-slate-800 placeholder-slate-400 transition-all outline-none"
+                        required>
+                    <button type="button" id="togglePasswordBtn" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 focus:outline-none p-1 transition-colors" aria-label="Toggle password visibility">
+                        <i id="togglePassword" class="fa-regular fa-eye text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full py-3.5 px-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 mt-2">
+                Sign In
+            </button>
+
+            <!-- Error / Blocked Alert Container -->
+            <div class="text-center text-xs font-semibold text-rose-500 min-h-[20px]" id="errorAlert">
+                <% if (typeof blockedMessage !== 'undefined' && blockedMessage) { %> 
+                    <span class="inline-flex items-center gap-1.5 p-2.5 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 w-full justify-center">
+                        <i class="fa-solid fa-triangle-exclamation text-xs"></i>
+                        <%= blockedMessage %>
+                    </span>
+                <% } %> 
+            </div>
+
+            <!-- Success Alert Container -->
+            <div class="text-center text-xs font-semibold text-emerald-600" id="successAlert"></div>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="relative my-6">
+            <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-slate-200/80"></div>
+            </div>
+            <div class="relative flex justify-center text-[10px] uppercase tracking-wider text-slate-400">
+                <span class="bg-white px-3 font-semibold">Or continue with</span>
             </div>
         </div>
 
-        <!-- Include the footer partial  -->
+        <!-- Google Sign-In Button -->
+        <a href="/auth/google" class="w-full py-3 px-4 rounded-2xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs transition-all flex items-center justify-center gap-3 shadow-sm hover:shadow group">
+            <svg class="w-4 h-4" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span class="group-hover:text-slate-900 transition-colors">Sign in with Google</span>
+        </a>
 
-        <%- include("partials/footer") %>
-          
+        <!-- Sign Up Prompt -->
+        <p class="text-center text-xs text-slate-500 mt-6 font-medium">
+            Don't have an account? 
+            <a href="/signup" class="text-slate-900 font-bold hover:underline transition-all ml-1">Create Account</a>
+        </p>
+    </div>
+</div>
 
-            <script>
-                // Toggle visibility for password
-                const togglePassword = document.getElementById('togglePassword');
-                const password = document.getElementById('password');
+<!-- Include Footer Partial -->
+<%- include("partials/footer") %>
 
-                togglePassword.addEventListener('click', function () {
-                    // Toggle the type attribute
-                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                    password.setAttribute('type', type);
-                    // Toggle the eye icon
-                    this.classList.toggle('fa-eye-slash');
-                });
+<script>
+    // Password Visibility Toggle
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+    const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('password');
 
-                document.getElementById('loginForm').addEventListener('submit', async function (event) {
-                    event.preventDefault(); // Prevent default form submission
+    if (togglePasswordBtn && password) {
+        togglePasswordBtn.addEventListener('click', function () {
+            const isPassword = password.getAttribute('type') === 'password';
+            password.setAttribute('type', isPassword ? 'text' : 'password');
+            if (togglePassword) {
+                togglePassword.classList.toggle('fa-eye', !isPassword);
+                togglePassword.classList.toggle('fa-eye-slash', isPassword);
+            }
+        });
+    }
 
-                    // Input fields
-                    const email = document.getElementById('email').value.trim();
-                    const password = document.getElementById('password').value;
+    // Login Form Submission
+    document.getElementById('loginForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
 
-                    // Regular expressions for validation
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    const passwordRegex = /.{8,}/;
+        const email = document.getElementById('email').value.trim();
+        const passwordValue = password.value;
 
-                    // Error and Success Alert Elements
-                    const errorAlert = document.getElementById('errorAlert');
-                    const successAlert = document.getElementById('successAlert');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const passwordRegex = /.{8,}/;
 
-                    errorAlert.textContent = ''; // Clear the error message
-                    successAlert.textContent = ''; // Clear the success message
+        const errorAlert = document.getElementById('errorAlert');
+        const successAlert = document.getElementById('successAlert');
 
-                    // Validate Email (correct format)
-                    if (!emailRegex.test(email)) {
-                        errorAlert.textContent = 'Please enter a valid email address.';
-                        return;
-                    }
+        errorAlert.textContent = '';
+        successAlert.textContent = '';
 
-                    // Validate Password
-                    if (!passwordRegex.test(password)) {
-                        errorAlert.textContent = 'Password must be at least 8 characters long.';
-                        return;
-                    }
+        if (!emailRegex.test(email)) {
+            errorAlert.innerHTML = '<span class="inline-flex items-center gap-1.5 p-2 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 w-full justify-center"><i class="fa-solid fa-circle-exclamation text-xs"></i> Please enter a valid email address.</span>';
+            return;
+        }
 
+        if (!passwordRegex.test(passwordValue)) {
+            errorAlert.innerHTML = '<span class="inline-flex items-center gap-1.5 p-2 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 w-full justify-center"><i class="fa-solid fa-circle-exclamation text-xs"></i> Password must be at least 8 characters long.</span>';
+            return;
+        }
 
-                    // Send login data to the server
-                    try {
-                        const response = await fetch('/login', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ email, password })
-                        });
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password: passwordValue })
+            });
 
-                        // Parse the JSON response
-                        const result = await response.json();
+            const result = await response.json();
 
-                        if (response.ok) { // Response status is 200-299
-                            successAlert.textContent = result.message;
-                            // Optionally redirect to another page
-                            window.location.href = '/';
-                        } else {
-                            errorAlert.textContent = result.message;
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        errorAlert.textContent = 'An error occurred. Please try again.';
-                    }
-                });
-            </script>
-
+            if (response.ok) {
+                successAlert.innerHTML = '<span class="inline-flex items-center gap-1.5 p-2 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100 w-full justify-center"><i class="fa-solid fa-circle-check text-xs"></i> ' + (result.message || 'Login successful!') + '</span>';
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 800);
+            } else {
+                errorAlert.innerHTML = '<span class="inline-flex items-center gap-1.5 p-2 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 w-full justify-center"><i class="fa-solid fa-circle-exclamation text-xs"></i> ' + (result.message || 'Invalid credentials') + '</span>';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            errorAlert.innerHTML = '<span class="inline-flex items-center gap-1.5 p-2 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 w-full justify-center"><i class="fa-solid fa-triangle-exclamation text-xs"></i> An error occurred. Please try again.</span>';
+        }
+    });
+</script>

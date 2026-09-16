@@ -1,242 +1,308 @@
+<div class="min-h-screen bg-[#F8FAFC]">
 
-
-<div style=" font-family: 'Metropolis', sans-serif;">
-
-  <div class=" z-50 fixed w-full">
-
-    <!-- Include the header partial -->
-
+  <!-- Fixed Top Header -->
+  <div class="fixed top-0 left-0 w-full z-50">
     <%- include("partials/header") %>
-
   </div>
 
+  <!-- Hero Carousel Section with Frosted Controls & Indicators -->
+  <section class="relative w-full pt-[112px] md:pt-[70px] overflow-hidden">
+    <div class="relative w-full overflow-hidden">
+      <!-- Slides Track -->
+      <div class="flex transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" id="carousel">
+        <div class="min-w-full relative">
+          <img src="../images/carousel-1.webp" alt="Vibe Collection 1" class="w-full max-lg:hidden object-cover select-none" />
+          <img src="../images/mobile-first-carousel-1.webp" alt="Vibe Collection 1" class="w-full lg:hidden object-cover select-none" />
+        </div>
+        <div class="min-w-full relative">
+          <img src="../images/carousel-2.webp" alt="Vibe Collection 2" class="w-full max-lg:hidden object-cover select-none" />
+          <img src="../images/mobile-first-carousel-2.webp" alt="Vibe Collection 2" class="w-full lg:hidden object-cover select-none" />
+        </div>
+        <div class="min-w-full relative">
+          <img src="../images/carousel-3.webp" alt="Vibe Collection 3" class="w-full max-lg:hidden object-cover select-none" />
+          <img src="../images/mobile-first-carousel-3.webp" alt="Vibe Collection 3" class="w-full lg:hidden object-cover select-none" />
+        </div>
+      </div>
 
-  <div class="relative w-full overflow-hidden lg:pt-16 pt-28">
-    <!-- Carousel Items -->
-    <div class="flex transition-transform duration-500 ease-in-out " id="carousel">
-      <div class="min-w-full">
-        <img src="../images/carousel-1.webp" alt="Slide 1" class="w-full max-lg:hidden" />
-        <img src="../images/mobile-first-carousel-1.webp" alt="Slide 1" class="w-full lg:hidden">
-      </div>
-      <div class="min-w-full">
-        <img src="../images/carousel-2.webp" alt="Slide 2" class="w-full max-lg:hidden" />
-        <img src="../images/mobile-first-carousel-2.webp" alt="Slide 2" class="w-full lg:hidden">
-      </div>
-      <div class="min-w-full">
-        <img src="../images/carousel-3.webp" alt="Slide 3" class="w-full max-lg:hidden" />
-        <img src="../images/mobile-first-carousel-3.webp" alt="Slide 3" class="w-full lg:hidden">
+      <!-- Minimalist Frosted Glass Controls -->
+      <button id="prev" aria-label="Previous Slide"
+        class="absolute top-1/2 left-6 -translate-y-1/2 w-12 h-12 rounded-full bg-white/75 hover:bg-white text-slate-800 backdrop-blur-md shadow-lg border border-white/60 flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 max-lg:hidden z-20">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+      </button>
+
+      <button id="next" aria-label="Next Slide"
+        class="absolute top-1/2 right-6 -translate-y-1/2 w-12 h-12 rounded-full bg-white/75 hover:bg-white text-slate-800 backdrop-blur-md shadow-lg border border-white/60 flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 max-lg:hidden z-20">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+        </svg>
+      </button>
+
+      <!-- Carousel Progress Dots -->
+      <div class="absolute bottom-5 left-1/2 -translate-y-0 -translate-x-1/2 flex items-center gap-2 z-20" id="carouselDots">
+        <button onclick="goToSlide(0)" class="carousel-dot h-2 rounded-full transition-all duration-300 w-8 bg-white shadow-sm" aria-label="Slide 1"></button>
+        <button onclick="goToSlide(1)" class="carousel-dot h-2 rounded-full transition-all duration-300 w-2.5 bg-white/60 hover:bg-white shadow-sm" aria-label="Slide 2"></button>
+        <button onclick="goToSlide(2)" class="carousel-dot h-2 rounded-full transition-all duration-300 w-2.5 bg-white/60 hover:bg-white shadow-sm" aria-label="Slide 3"></button>
       </div>
     </div>
+  </section>
 
-    <!-- Carousel Controls -->
-    <button id="prev"
-      class="absolute top-1/2 left-4 transform -translate-y-1/2 p-3  text-white rounded-full max-lg:hidden"
-      style="background-color: #101725;">
-      <svg fill="#ffffff" height="22px" width="22px" version="1.1" id="XMLID_54_" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-0.72 -0.72 25.44 25.44" xml:space="preserve"
-        stroke="#ffffff">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-        <g id="SVGRepo_iconCarrier">
-          <g id="previous">
-            <g>
-              <polygon points="17.2,23.7 5.4,12 17.2,0.3 18.5,1.7 8.4,12 18.5,22.3 "></polygon>
-            </g>
-          </g>
-        </g>
-      </svg>
-    </button>
-    <button id="next"
-      class="absolute top-1/2 right-4 transform -translate-y-1/2 p-3 text-white rounded-full max-lg:hidden"
-      style="background-color: #101725;">
-      <svg fill="#ffffff" height="22px" width="22px" version="1.1" id="XMLID_287_" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" stroke="#ffffff">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-        <g id="SVGRepo_iconCarrier">
-          <g id="next">
-            <g>
-              <polygon points="6.8,23.7 5.4,22.3 15.7,12 5.4,1.7 6.8,0.3 18.5,12 "></polygon>
-            </g>
-          </g>
-        </g>
-      </svg>
-    </button>
-  </div>
-
-
-  <!-- section 4 -->
-  <div class="w-full bg-gray-200 py-4 " style="font-family: 'Metropolis', sans-serif;">
-    <div
-      class="w-full flex  whitespace-nowrap justify-between lg:px-48 px-4 items-center text-sm leading-tight text-xs">
+  <!-- 4-Pillar Luxury Trust & Guarantee Strip -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 -mt-3 sm:mt-6 relative z-30">
+    <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] py-6 px-4 sm:px-8 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      
       <!-- 1 Year Warranty -->
-      <div class="flex flex-col lg:flex-row items-center flex-shrink-0 ">
-        <img class="mb-2 lg:mb-0 lg:mr-2"
-          src="https://www.boat-lifestyle.com/cdn/shop/files/Group_334305_small.svg?v=1682336123" alt="">
-        <p class="text-center lg:text-left"><span class="font-semibold">1 year</span> <br> Warranty</p>
+      <div class="flex items-center gap-3.5 p-2 group">
+        <div class="w-11 h-11 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-center text-slate-800 group-hover:bg-slate-900 group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-[13px] sm:text-sm font-bold text-slate-900 leading-tight">1 Year Warranty</h4>
+          <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">100% Brand Guarantee</p>
+        </div>
       </div>
 
-      <!-- 7-day Replacement -->
-      <div class="flex flex-col lg:flex-row items-center flex-shrink-0 ">
-        <img class="mb-2 lg:mb-0 lg:mr-2"
-          src="https://www.boat-lifestyle.com/cdn/shop/files/Group_334304_small.svg?v=1682336123" alt="">
-        <p class="text-center lg:text-left"><span class="font-semibold">7-day</span> <br> Replacement</p>
+      <!-- 7-Day Replacement -->
+      <div class="flex items-center gap-3.5 p-2 group">
+        <div class="w-11 h-11 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-center text-slate-800 group-hover:bg-slate-900 group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-[13px] sm:text-sm font-bold text-slate-900 leading-tight">7-Day Return</h4>
+          <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Hassle-Free Replacement</p>
+        </div>
       </div>
 
       <!-- Free Express Delivery -->
-      <div class="flex flex-col lg:flex-row items-center flex-shrink-0">
-        <img class="mb-2 lg:mb-0 lg:mr-2"
-          src="https://www.boat-lifestyle.com/cdn/shop/files/Group_334303_small.svg?v=1682336123" alt="">
-        <p class="text-center lg:text-left"><span class="font-semibold">Free Express</span> <br> Delivery</p>
+      <div class="flex items-center gap-3.5 p-2 group">
+        <div class="w-11 h-11 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-center text-slate-800 group-hover:bg-slate-900 group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-[13px] sm:text-sm font-bold text-slate-900 leading-tight">Free Express</h4>
+          <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Fast Nationwide Delivery</p>
+        </div>
       </div>
 
       <!-- GST Billing -->
-      <div class="flex flex-col lg:flex-row items-center flex-shrink-0">
-        <img class="mb-2 lg:mb-0 lg:mr-2"
-          src="https://www.boat-lifestyle.com/cdn/shop/files/Group_334302_small.svg?v=1682336123" alt="">
-        <p class="text-center lg:text-left"><span class="font-semibold">GST</span> <br> Billing</p>
+      <div class="flex items-center gap-3.5 p-2 group">
+        <div class="w-11 h-11 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-center text-slate-800 group-hover:bg-slate-900 group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-[13px] sm:text-sm font-bold text-slate-900 leading-tight">GST Invoicing</h4>
+          <p class="text-[11px] sm:text-xs text-slate-500 mt-0.5">Tax Input Credit Claim</p>
+        </div>
       </div>
+
     </div>
-  </div>
+  </section>
 
+  <!-- Bestsellers Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-4">
+      <div>
+        <span class="text-[11px] font-bold tracking-widest text-slate-400 uppercase">Acoustic Signature</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-1">Explore <span class="font-normal text-slate-400">Bestsellers</span></h2>
+        <p class="text-sm text-slate-500 mt-1">Mastercrafted personal audio tested and loved by thousands</p>
+      </div>
+      <a href="/all/products" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-800 hover:text-slate-600 transition-colors group">
+        <span>View Full Catalog</span>
+        <i class="fa-solid fa-arrow-right text-[11px] group-hover:translate-x-1 transition-transform"></i>
+      </a>
+    </div>
 
-
-
-
-
-
-
-  <div class="bg-gray-100 mt-2 mb-4 px-4">
-    <div class="p-4 mx-auto lg:max-w-screen-2xl sm:max-w-full">
-      <h2 class="text-2xl text-gray-800 mb-8"> Explore <span class="font-bold"> Bestsellers</span></h2>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 max-xl:gap-4 gap-4">
-
-        <% bestSellers.forEach((product)=> { %>
-
-
-          <div class="bg-white rounded-2xl p-5 cursor-pointer hover:-translate-y-2 transition-all relative">
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 sm:gap-6">
+      <% bestSellers.forEach((product) => { %>
+        <div class="bg-white rounded-3xl p-4 sm:p-5 border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group relative">
           
-            <div class="w-5/6 h-[210px] overflow-hidden mx-auto aspect-w-16 aspect-h-8 md:mb-2 mb-4">
-              
-             <a href="/product/<%= product.productDetails._id%>">
-              <img src="/uploads/<%= product.productDetails.images[0] %>" alt="Product 2" class="h-full w-full object-contain" />
-             </a>
-            
-            </div>
+          <!-- Top Badges -->
+          <div class="flex items-center justify-between w-full mb-3 z-10">
+            <% if (product.productDetails && product.productDetails.discount) { %>
+              <span class="bg-slate-900 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                <%= product.productDetails.discount %>% OFF
+              </span>
+            <% } else { %>
+              <span></span>
+            <% } %>
+            <a href="/product/<%= product.productDetails._id %>" class="w-7 h-7 rounded-full bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-rose-500 transition-colors">
+              <i class="fa-regular fa-heart text-xs"></i>
+            </a>
+          </div>
 
+          <!-- Product Image in Soft Neutral Frame -->
+          <div class="w-full h-[200px] sm:h-[210px] bg-[#f8fafc] rounded-2xl p-4 flex items-center justify-center overflow-hidden mb-4 relative">
+            <a href="/product/<%= product.productDetails._id %>" class="w-full h-full flex items-center justify-center">
+              <img src="/uploads/<%= product.productDetails.images[0] %>" alt="<%= product.productName %>" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500" />
+            </a>
+          </div>
+
+          <!-- Product Meta & Info -->
+          <div class="flex-grow flex flex-col justify-between">
             <div>
-              <h3 class="text-lg font-extrabold text-gray-800">
-                <%= product.productName %>
+              <h3 class="text-sm sm:text-[15px] font-bold text-slate-900 line-clamp-1 group-hover:text-slate-700 transition-colors">
+                <a href="/product/<%= product.productDetails._id %>"><%= product.productName %></a>
               </h3>
-              <p class="text-gray-600 text-sm mt-2 line-clamp-2">
+              <p class="text-xs text-slate-500 line-clamp-2 mt-1.5 leading-relaxed">
                 <%= product.productDetails.description %>
               </p>
-              <h4 class="mt-4">
-             <span class="text-lg font-bold mr-2"> <span>&#8377;</span><%= product.productDetails.discountPrice %> </span>
-             <span class="text-gray-500 line-through"><span>&#8377;</span><%= product.productDetails.price %> </span>
-             <span class="text-green-600 font-semibold ml-2"> <%= product.productDetails.discount %>% off</span>
-              </h4>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <div>
+                <div class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight leading-none">
+                  &#8377;<%= product.productDetails.discountPrice %>
+                </div>
+                <% if (product.productDetails.price) { %>
+                  <div class="text-[11px] text-slate-400 line-through mt-1">
+                    &#8377;<%= product.productDetails.price %>
+                  </div>
+                <% } %>
+              </div>
+
+              <!-- Quick View Link -->
+              <a href="/product/<%= product.productDetails._id %>" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-700 flex items-center justify-center transition-all duration-200">
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
             </div>
           </div>
 
-
-
-          <% }) %>
-
-
-      </div>
+        </div>
+      <% }) %>
     </div>
-  </div>
+  </section>
 
+  <!-- Mid-Page Promotional Banner -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 my-6 sm:my-8">
+    <div class="overflow-hidden rounded-3xl shadow-[0_12px_40px_-10px_rgba(0,0,0,0.06)] border border-slate-100 group">
+      <img src="../images/Center-Banner-2048x640.jpg" alt="Featured Audio Experience" class="w-full object-cover max-lg:hidden transition-transform duration-700 group-hover:scale-[1.01]" />
+      <img src="../images/Mobile-Center-Banner-768x615.jpg" alt="Featured Audio Experience" class="w-full object-cover lg:hidden" />
+    </div>
+  </section>
 
+  <!-- New Launches Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-4">
+      <div>
+        <span class="text-[11px] font-bold tracking-widest text-slate-400 uppercase">Fresh Engineering</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-1">New <span class="font-normal text-slate-400">Launches</span></h2>
+        <p class="text-sm text-slate-500 mt-1">Next-generation sound clarity with ultra-low latency & deep bass</p>
+      </div>
+      <a href="/all/products" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-800 hover:text-slate-600 transition-colors group">
+        <span>Explore All Releases</span>
+        <i class="fa-solid fa-arrow-right text-[11px] group-hover:translate-x-1 transition-transform"></i>
+      </a>
+    </div>
 
-  <!-- Banner -->
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 sm:gap-6">
+      <% latestProducts.forEach((product) => { %>
+        <div class="bg-white rounded-3xl p-4 sm:p-5 border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group relative">
+          
+          <!-- Top Badges -->
+          <div class="flex items-center justify-between w-full mb-3 z-10">
+            <% if (product.discount) { %>
+              <span class="bg-slate-900 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                <%= product.discount %>% OFF
+              </span>
+            <% } else { %>
+              <span class="bg-slate-100 text-slate-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                NEW
+              </span>
+            <% } %>
+            <a href="/product/<%= product.id %>" class="w-7 h-7 rounded-full bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-rose-500 transition-colors">
+              <i class="fa-regular fa-heart text-xs"></i>
+            </a>
+          </div>
 
-  <div>
-    <img src="../images/Center-Banner-2048x640.jpg" alt="" class="max-lg:hidden">
-    <img src="../images/Mobile-Center-Banner-768x615.jpg" alt="" class="lg:hidden">
-  </div>
+          <!-- Product Image in Soft Neutral Frame -->
+          <div class="w-full h-[200px] sm:h-[210px] bg-[#f8fafc] rounded-2xl p-4 flex items-center justify-center overflow-hidden mb-4 relative">
+            <a href="/product/<%= product.id %>" class="w-full h-full flex items-center justify-center">
+              <img src="/uploads/<%= product.images[0] %>" alt="<%= product.name %>" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500" />
+            </a>
+          </div>
 
-
-
-
-
-  <div class="bg-gray-100 mt-2 mb-4 px-4">
-    <div class="p-4 mx-auto lg:max-w-screen-2xl sm:max-w-full">
-      <h2 class="text-2xl text-gray-800 mb-8">New <span class="font-bold">Launches</span></h2>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 max-xl:gap-4 gap-4">
-
-        <% latestProducts.forEach((product)=> { %>
-
-
-          <div class="bg-white rounded-2xl p-5 cursor-pointer hover:-translate-y-2 transition-all relative">
-           
-
-            <div class="w-5/6 h-[210px] overflow-hidden mx-auto aspect-w-16 aspect-h-8 md:mb-2 mb-4">
-             
-             <a href="/product/<%= product.id%>">
-              <img src="/uploads/<%= product.images[0] %>" alt="Product 2" class="h-full w-full object-contain" />
-             </a>
-             
-            </div>
-
+          <!-- Product Meta & Info -->
+          <div class="flex-grow flex flex-col justify-between">
             <div>
-              <h3 class="text-lg font-extrabold text-gray-800">
-                <%= product.name %>
+              <h3 class="text-sm sm:text-[15px] font-bold text-slate-900 line-clamp-1 group-hover:text-slate-700 transition-colors">
+                <a href="/product/<%= product.id %>"><%= product.name %></a>
               </h3>
-              <p class="text-gray-600 text-sm mt-2 line-clamp-2">
+              <p class="text-xs text-slate-500 line-clamp-2 mt-1.5 leading-relaxed">
                 <%= product.description %>
               </p>
-              <h4 class="mt-4">
-                <span class="text-lg font-bold mr-2"> <span>&#8377;</span><%= product.discountPrice %> </span>
-                <span class="text-gray-500 line-through"><span>&#8377;</span><%= product.price %> </span>
-                <span class="text-green-600 font-semibold ml-2"> <%= product.discount %>% off</span>
-              </h4>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <div>
+                <div class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight leading-none">
+                  &#8377;<%= product.discountPrice %>
+                </div>
+                <% if (product.price) { %>
+                  <div class="text-[11px] text-slate-400 line-through mt-1">
+                    &#8377;<%= product.price %>
+                  </div>
+                <% } %>
+              </div>
+
+              <!-- Quick View Link -->
+              <a href="/product/<%= product.id %>" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-700 flex items-center justify-center transition-all duration-200">
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
             </div>
           </div>
 
-
-
-          <% }) %>
-
-
-      </div>
+        </div>
+      <% }) %>
     </div>
-  </div>
+  </section>
 
+  <!-- Bottom Featured Banner -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 mb-16 sm:mb-20">
+    <div class="overflow-hidden rounded-3xl shadow-[0_12px_40px_-10px_rgba(0,0,0,0.06)] border border-slate-100 group">
+      <img src="../images/Headphones-1440X500.webp" alt="Studio Grade Headphones" class="w-full object-cover max-lg:hidden transition-transform duration-700 group-hover:scale-[1.01]" />
+      <img src="../images/mobile-jbl-banner.jpg" alt="Studio Grade Headphones" class="w-full object-cover lg:hidden" />
+    </div>
+  </section>
 
-
-
-  <!-- Banner  -->
-
-  <div class="flex justify-center mb-8">
-    <img src="../images/Headphones-1440X500.webp" alt="" class="max-lg:hidden rounded-xl">
-    <img src="../images/mobile-jbl-banner.jpg" alt="" class="lg:hidden">
-  </div>
-
-
-  <div>
-    <%- include("partials/footer") %>
-  </div>
+  <!-- Footer -->
+  <%- include("partials/footer") %>
 
 </div>
 
-
-
-
+<!-- Carousel Script -->
 <script>
   const carousel = document.getElementById('carousel');
   const prevBtn = document.getElementById('prev');
   const nextBtn = document.getElementById('next');
+  const dots = document.querySelectorAll('.carousel-dot');
 
   let currentIndex = 0;
+  let autoSlideTimer;
+
+  function updateDots(index) {
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.className = 'carousel-dot h-2 rounded-full transition-all duration-300 w-8 bg-white shadow-sm';
+      } else {
+        dot.className = 'carousel-dot h-2 rounded-full transition-all duration-300 w-2.5 bg-white/60 hover:bg-white shadow-sm';
+      }
+    });
+  }
 
   function showSlide(index) {
     const totalSlides = carousel.children.length;
 
-    // Loop through slides if the index is out of bounds
     if (index >= totalSlides) {
       currentIndex = 0;
     } else if (index < 0) {
@@ -245,23 +311,62 @@
       currentIndex = index;
     }
 
-    // Calculate the correct translation value
     const translateX = currentIndex * -100;
-
-    // Apply the transform to shift the slides
     carousel.style.transform = `translateX(${translateX}%)`;
+    updateDots(currentIndex);
   }
 
-  nextBtn.addEventListener('click', () => {
-    showSlide(currentIndex + 1);
-  });
+  function goToSlide(index) {
+    showSlide(index);
+    resetAutoSlide();
+  }
 
-  prevBtn.addEventListener('click', () => {
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
     showSlide(currentIndex - 1);
-  });
+  }
 
-  // Optional: Auto-slide every 5 seconds
-  setInterval(() => {
-    showSlide(currentIndex + 1);
-  }, 5000);
+  function resetAutoSlide() {
+    clearInterval(autoSlideTimer);
+    autoSlideTimer = setInterval(nextSlide, 5000);
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      resetAutoSlide();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      resetAutoSlide();
+    });
+  }
+
+  // Touch Swipe for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) {
+      nextSlide();
+      resetAutoSlide();
+    } else if (touchEndX - touchStartX > 50) {
+      prevSlide();
+      resetAutoSlide();
+    }
+  }, { passive: true });
+
+  // Auto slide every 5 seconds
+  autoSlideTimer = setInterval(nextSlide, 5000);
 </script>
