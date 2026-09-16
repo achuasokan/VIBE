@@ -1,203 +1,214 @@
+<div class="bg-[#F8FAFC] min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden font-sans">
+    
+    <!-- Subtle Ambient Glow -->
+    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-slate-200/50 rounded-full blur-3xl pointer-events-none -z-10"></div>
 
+    <!-- Brand Logo Top -->
+    <a href="/" class="mb-8 inline-block transition-transform hover:scale-105">
+        <img src="../images/vibe-logo.png" alt="VIBE" class="w-24" style="filter: brightness(0);" />
+    </a>
 
-<div class="bg-gray-100 min-h-screen flex items-center justify-center">
-
-    <!-- Signup OTP Form -->
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm mx-4"> <!-- Added mx-4 for mobile padding -->
-        <div class="flex justify-center mb-6">
-            <!-- Email Icon -->
-            <div class="bg-gray-100 p-4 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-500" viewBox="0 0 24 24"
-                    fill="currentColor">
-                    <path
-                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v.01L12 12l8-5.99V6H4zm0 12h16V8l-8 5-8-5v10z" />
-                </svg>
+    <!-- Verification Card -->
+    <div class="bg-white p-7 sm:p-10 rounded-3xl sm:rounded-[2rem] border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.04)] w-full max-w-[420px] transition-all duration-300">
+        
+        <!-- Icon & Heading -->
+        <div class="text-center mb-8">
+            <div class="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-900 mx-auto mb-4 shadow-sm">
+                <i class="fa-solid fa-envelope-circle-check text-xl"></i>
             </div>
-        </div>
-        <h2 class="text-2xl font-bold mb-4 text-center">Verify Your Email</h2>
-        <p class="text-center mb-6 text-gray-600">Please enter the verification code we sent to your email</p>
-
-        <!-- OTP Input Form -->
-        <form id="otp-form" class="flex justify-center gap-2 mb-6">
-            <!-- Individual OTP Input Boxes -->
-            <input type="text" maxlength="1"
-                class="otp-input w-10 h-10 md:w-12 md:h-12 text-center p-2 md:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 text-xl md:text-2xl font-semibold"
-                required>
-            <input type="text" maxlength="1"
-                class="otp-input w-10 h-10 md:w-12 md:h-12 text-center p-2 md:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 text-xl md:text-2xl font-semibold"
-                required>
-            <input type="text" maxlength="1"
-                class="otp-input w-10 h-10 md:w-12 md:h-12 text-center p-2 md:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 text-xl md:text-2xl font-semibold"
-                required>
-            <input type="text" maxlength="1"
-                class="otp-input w-10 h-10 md:w-12 md:h-12 text-center p-2 md:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 text-xl md:text-2xl font-semibold"
-                required>
-            <input type="text" maxlength="1"
-                class="otp-input w-10 h-10 md:w-12 md:h-12 text-center p-2 md:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 text-xl md:text-2xl font-semibold"
-                required>
-            <input type="text" maxlength="1"
-                class="otp-input w-10 h-10 md:w-12 md:h-12 text-center p-2 md:p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 text-xl md:text-2xl font-semibold"
-                required>
-        </form>
-
-        <button id="confirm-otp" type="submit"
-            class="w-full bg-black text-white p-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">Confirm</button>
-        <div class="my-4 text-center text-red-500" id="errorAlert">
-            <!-- This will be updated dynamically for errors -->
-        </div>
-
-        <div class="text-center mt-4">
-            <p id="timer" class=" text-blue-700 font-bold">02:00</p>
-            <p>Didn't receive the OTP? <a id="resend-otp" href="#" class="text-green-500 hover:underline">Resend OTP</a>
+            <h1 class="text-2xl sm:text-[26px] font-extrabold text-slate-900 tracking-tight">Verify Your Email</h1>
+            <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                We have sent a 6-digit security code to your email address. Enter it below to proceed.
             </p>
         </div>
+
+        <!-- 6-Digit OTP Form -->
+        <form id="otp-form" class="flex justify-center gap-2 sm:gap-2.5 mb-6" onsubmit="event.preventDefault();">
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input w-11 h-12 sm:w-12 sm:h-14 text-center font-extrabold text-lg sm:text-xl text-slate-900 bg-slate-50 border border-slate-200/80 rounded-2xl focus:bg-white focus:border-slate-900 focus:ring-4 focus:ring-slate-900/5 transition-all outline-none" required autocomplete="off">
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input w-11 h-12 sm:w-12 sm:h-14 text-center font-extrabold text-lg sm:text-xl text-slate-900 bg-slate-50 border border-slate-200/80 rounded-2xl focus:bg-white focus:border-slate-900 focus:ring-4 focus:ring-slate-900/5 transition-all outline-none" required autocomplete="off">
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input w-11 h-12 sm:w-12 sm:h-14 text-center font-extrabold text-lg sm:text-xl text-slate-900 bg-slate-50 border border-slate-200/80 rounded-2xl focus:bg-white focus:border-slate-900 focus:ring-4 focus:ring-slate-900/5 transition-all outline-none" required autocomplete="off">
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input w-11 h-12 sm:w-12 sm:h-14 text-center font-extrabold text-lg sm:text-xl text-slate-900 bg-slate-50 border border-slate-200/80 rounded-2xl focus:bg-white focus:border-slate-900 focus:ring-4 focus:ring-slate-900/5 transition-all outline-none" required autocomplete="off">
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input w-11 h-12 sm:w-12 sm:h-14 text-center font-extrabold text-lg sm:text-xl text-slate-900 bg-slate-50 border border-slate-200/80 rounded-2xl focus:bg-white focus:border-slate-900 focus:ring-4 focus:ring-slate-900/5 transition-all outline-none" required autocomplete="off">
+            <input type="text" inputmode="numeric" maxlength="1" class="otp-input w-11 h-12 sm:w-12 sm:h-14 text-center font-extrabold text-lg sm:text-xl text-slate-900 bg-slate-50 border border-slate-200/80 rounded-2xl focus:bg-white focus:border-slate-900 focus:ring-4 focus:ring-slate-900/5 transition-all outline-none" required autocomplete="off">
+        </form>
+
+        <!-- Submit Button -->
+        <button id="confirm-otp" type="button"
+            class="w-full py-3.5 px-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0">
+            Confirm Verification
+        </button>
+
+        <!-- Error Alert Container -->
+        <div class="text-center text-xs font-semibold text-rose-500 min-h-[22px] mt-4" id="errorAlert"></div>
+
+        <!-- Timer & Resend Section -->
+        <div class="text-center mt-6 pt-6 border-t border-slate-100">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold mb-3 shadow-sm">
+                <i class="fa-regular fa-clock text-slate-400"></i>
+                <span id="timer">02:00</span>
+            </div>
+            <p class="text-xs text-slate-500">
+                Didn't receive the OTP? 
+                <a id="resend-otp" href="#" class="text-slate-900 font-bold hover:underline transition-all ml-1">Resend Code</a>
+            </p>
+        </div>
+
     </div>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const email = urlParams.get('email');
-        console.log('email', email)
-        const timerElement = document.getElementById('timer');
-        const resendOtpLink = document.getElementById('resend-otp');
+    <!-- Back Link -->
+    <a href="/login" class="mt-8 text-xs font-bold text-slate-500 hover:text-slate-900 transition-colors inline-flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left text-[11px]"></i> Return to Login
+    </a>
+</div>
 
-        // Error Alert Element
-        const errorAlert = document.getElementById('errorAlert');
-        errorAlert.textContent = ''; // Clear the error message on each attempt
+<!-- SweetAlert Library -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        let countdown = 120; // 120 seconds countdown
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');
+    const timerElement = document.getElementById('timer');
+    const resendOtpLink = document.getElementById('resend-otp');
+    const errorAlert = document.getElementById('errorAlert');
 
-        // Function to format time in MM:SS
-        function formatTime(second) {
-            const minutes = Math.floor(second / 60);
-            const remainingSeconds = second % 60;
-            return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, "0")}`;
+    let countdown = 120;
+    let interval;
 
-        }
+    function formatTime(second) {
+        const minutes = Math.floor(second / 60);
+        const remainingSeconds = second % 60;
+        return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, "0")}`;
+    }
 
-        // Function to start countdown timer
-        function startCountdown() {
-            const interval = setInterval(() => {
-                countdown--;
-                timerElement.textContent = formatTime(countdown);
+    function startCountdown() {
+        clearInterval(interval);
+        interval = setInterval(() => {
+            countdown--;
+            if (timerElement) timerElement.textContent = formatTime(countdown);
 
-                if (countdown <= 0) {
-                    clearInterval(interval);
-                    resendOtpLink.style.pointerEvents = 'auto'; // Enable  the resend link
-                    resendOtpLink.style.opacity = '1'; // Make the link fully visible
+            if (countdown <= 0) {
+                clearInterval(interval);
+                if (resendOtpLink) {
+                    resendOtpLink.style.pointerEvents = 'auto';
+                    resendOtpLink.style.opacity = '1';
                 }
-            }, 1000); // Update every 1 second
-        }
+            }
+        }, 1000);
+    }
 
-        // Initially disable the resend OTP link and start countdown
+    if (resendOtpLink) {
         resendOtpLink.style.pointerEvents = 'none';
-        resendOtpLink.style.opacity = '0.5';
-        timerElement.textContent = formatTime(countdown);
-        startCountdown();
+        resendOtpLink.style.opacity = '0.4';
+    }
+    if (timerElement) timerElement.textContent = formatTime(countdown);
+    startCountdown();
 
-        // Automatically move to the next input field
-        const otpInputs = document.querySelectorAll('.otp-input');
+    // Auto-advance & Backspace for 6 OTP boxes
+    const otpInputs = document.querySelectorAll('.otp-input');
 
-        otpInputs.forEach((input, index) => {
-            input.addEventListener('input', function () {
-                if (input.value.length === 1 && index < otpInputs.length - 1) {
-                    otpInputs[index + 1].focus();
-                }
-            });
-
-            input.addEventListener('keyup', function (event) {
-                if (event.key === 'Backspace' && input.value === '' && index > 0) {
-                    otpInputs[index - 1].focus();
-                }
-
-                if (event.key === 'Enter') {
-                    submitOtp();
-                }
-            });
+    otpInputs.forEach((input, index) => {
+        input.addEventListener('input', function () {
+            // Keep only digits
+            input.value = input.value.replace(/[^0-9]/g, '');
+            if (input.value.length === 1 && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
+            }
         });
 
-
-        document.getElementById('confirm-otp').addEventListener('click', submitOtp);
-
-        // Submit OTP
-        async function submitOtp() {
-            // event.preventDefault();
-            const otp = Array.from(otpInputs).map(input => input.value).join('');
-
-            if (otp.length !== 6) {
-                errorAlert.textContent = 'Please enter the complete 6-digit OTP';
-                return;
+        input.addEventListener('keydown', function (event) {
+            if (event.key === 'Backspace' && input.value === '' && index > 0) {
+                otpInputs[index - 1].focus();
             }
-
-            try {
-                const response = await fetch('/verify-otp', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, otp }),
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-
-                    if(data.existingUser) {
-
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Email Verified!',
-                            text: 'Your email has been verified successfully. You can now reset your password.',
-                            background: '#F8F9FA',
-                            color: '#333',
-                            timer: 4000,
-                            showConfirmButton: false
-                        });
-
-                        setTimeout(() => {
-                            window.location.href = '/reset-password';
-                        },4000);
-                        return;
-                    }
-
-
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Signup Successful',
-                        text: 'Your account has been created successfully.',
-                        background: '#F8F9FA',
-                        color: '#333',
-                        timer: 3000,
-                        showConfirmButton: false
-                    });
-
-                    // Redirect after a short delay
-                    setTimeout(() => {
-                        window.location.href = '/login';
-                    }, 3000);
-                } else {
-                    errorAlert.textContent = data.message || 'OTP verification failed. Please try again.';
-                }
-            } catch (error) {
-                console.error('Error verifying OTP:', error);
-                errorAlert.textContent = 'An error occurred. Please try again.';
+            if (event.key === 'Enter') {
+                submitOtp();
             }
+        });
+    });
+
+    // Auto focus first input on load
+    if (otpInputs.length > 0) {
+        setTimeout(() => otpInputs[0].focus(), 200);
+    }
+
+    document.getElementById('confirm-otp').addEventListener('click', submitOtp);
+
+    // Submit OTP Function
+    async function submitOtp() {
+        const otp = Array.from(otpInputs).map(input => input.value).join('');
+
+        if (otp.length !== 6) {
+            errorAlert.innerHTML = '<span class="inline-flex items-center gap-1.5 p-2 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 w-full justify-center"><i class="fa-solid fa-circle-exclamation text-xs"></i> Please enter the full 6-digit verification code.</span>';
+            return;
         }
 
+        try {
+            const response = await fetch('/verify-otp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, otp }),
+            });
 
+            const data = await response.json();
 
-        // Resend OTP
+            if (response.ok) {
+                if (data.existingUser) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Email Verified',
+                        text: 'Your code is confirmed. You can now reset your password.',
+                        background: '#FFFFFF',
+                        color: '#0F172A',
+                        timer: 2500,
+                        showConfirmButton: false,
+                        customClass: {
+                            popup: 'rounded-3xl shadow-2xl border border-slate-100'
+                        }
+                    });
+
+                    setTimeout(() => {
+                        window.location.href = '/reset-password';
+                    }, 2500);
+                    return;
+                }
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Account Verified!',
+                    text: 'Welcome to VIBE. Your account is ready.',
+                    background: '#FFFFFF',
+                    color: '#0F172A',
+                    timer: 2500,
+                    showConfirmButton: false,
+                    customClass: {
+                        popup: 'rounded-3xl shadow-2xl border border-slate-100'
+                    }
+                });
+
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 2500);
+            } else {
+                errorAlert.innerHTML = '<span class="inline-flex items-center gap-1.5 p-2 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 w-full justify-center"><i class="fa-solid fa-circle-exclamation text-xs"></i> ' + (data.message || 'OTP verification failed. Please try again.') + '</span>';
+            }
+        } catch (error) {
+            console.error('Error verifying OTP:', error);
+            errorAlert.innerHTML = '<span class="inline-flex items-center gap-1.5 p-2 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 w-full justify-center"><i class="fa-solid fa-triangle-exclamation text-xs"></i> An error occurred. Please try again.</span>';
+        }
+    }
+
+    // Resend OTP
+    if (resendOtpLink) {
         resendOtpLink.addEventListener('click', async function (event) {
             event.preventDefault();
+            if (countdown > 0) return;
 
-            if (countdown > 0) return; // prevent resend if countdown hasn't finished
-
-            // Reset countdown
             countdown = 120;
-            timerElement.textContent = formatTime(countdown);
-            resendOtpLink.style.pointerEvents = 'none'; // Disable the resend link again
-            resendOtpLink.style.opacity = '0.5';
-            startCountdown(); // Restart countdown
-
+            if (timerElement) timerElement.textContent = formatTime(countdown);
+            resendOtpLink.style.pointerEvents = 'none';
+            resendOtpLink.style.opacity = '0.4';
+            startCountdown();
 
             try {
                 const response = await fetch('/resend-otp', {
@@ -211,18 +222,14 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    errorAlert.textContent = 'OTP resent successfully!';
-                    errorAlert.style.color = 'green';
+                    errorAlert.innerHTML = '<span class="inline-flex items-center gap-1.5 p-2 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100 w-full justify-center"><i class="fa-solid fa-circle-check text-xs"></i> New verification code sent to your email!</span>';
                 } else {
-                    errorAlert.textContent = data.message || 'Failed to resend OTP. Please try again.';
+                    errorAlert.innerHTML = '<span class="inline-flex items-center gap-1.5 p-2 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 w-full justify-center"><i class="fa-solid fa-circle-exclamation text-xs"></i> ' + (data.message || 'Failed to resend OTP.') + '</span>';
                 }
             } catch (error) {
                 console.error('Error resending OTP:', error);
-                errorAlert.textContent = 'An error occurred. Please try again.';
+                errorAlert.innerHTML = '<span class="inline-flex items-center gap-1.5 p-2 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 w-full justify-center"><i class="fa-solid fa-triangle-exclamation text-xs"></i> An error occurred. Please try again.</span>';
             }
         });
-
-
-    </script>
-</div>
-
+    }
+</script>
